@@ -27,12 +27,9 @@
         5-Add a condition to break the loop if the user gives no reponses
     
     6. Add logic to print the results and determine the winner :
-        1.    */
-
-
-                  
-
-
+        1. Create 3 variables : humanScore, computerScore and Scores to update score round by round
+        2. Add a final condition using if, else if and else to print the overall winner.
+        3. Pay attention to variables placement to ensure correct logic and display of the result   */
 
 // ===> Generation of Computer choice : <===
    
@@ -96,10 +93,11 @@ function playGame() { // Global function of the game
 
 // ===> Function to compare the results of getComputerChoice and getHumanChoice and determine a winner <===
 
-    function playRound(humanChoice, computerChoice) {
+let humanScore = 0
+let computeurScore = 0
+let scores = "" // Mutable variable for print the final scores     
 
-    let humanScore = 0
-    let computeurScore = 0
+function playRound(humanChoice, computerChoice) {
         
     console.log("Humain : " + humanChoice);
     console.log("Computer : " + computerChoice);
@@ -107,29 +105,29 @@ function playGame() { // Global function of the game
         if (humanChoice === computerChoice){
         console.log("Egality !");
         } else if (humanChoice === "Rock" && computerChoice === "Scissors") { 
-        console.log(" You win ! Rock beats Scissors !"); humanScore++;     
+        console.log("You win ! Rock beats Scissors !"); humanScore++;     
         } else if (computerChoice === "Rock" && humanChoice === "Scissors"){ 
-        console.log(" You loose ! Rock beats Scissors !"); computeurScore++;
+        console.log("You loose ! Rock beats Scissors !"); computeurScore++;
 
         } else if (humanChoice === "Paper" && computerChoice === "Rock"){ 
-        console.log(" You win ! Paper beats Rock !"); humanScore++;    
+        console.log("You win ! Paper beats Rock !"); humanScore++;    
         } else if (computerChoice === "Paper" && humanChoice === "Rock"){ 
-        console.log(" You loose ! Paper beats Rock !"); computeurScore++;
+        console.log("You loose ! Paper beats Rock !"); computeurScore++;
 
         } else if (humanChoice === "Scissors" && computerChoice === "Paper"){ 
-        console.log(" You win ! Scissors beats Paper !"); humanScore++;    
+        console.log("You win ! Scissors beats Paper !"); humanScore++;    
         } else if (computerChoice === "Scissors" && humanChoice === "Paper"){ 
-        console.log(" You loose ! Scissors beats Paper !"); computeurScore++;
+        console.log("You loose ! Scissors beats Paper !"); computeurScore++;
         
         } else {
         console.log("If you dont play, I win !");   
         }
 
-console.log("Human Score : " + humanScore);
-console.log("Computer Score : " + computeurScore); 
+scores = (humanScore + " --- " + computeurScore) // Modification of "scores" variable 
+console.log("Score : " + scores);
 
         }
-   
+
 // ==========================================================================================================
 
 // ===> While loop to restart the game 5 times <===
@@ -146,6 +144,14 @@ break;
 playRound (human, computer)
 }
 // ==========================================================================================================
+
+if (humanScore > computeurScore) {
+        console.log(`final Score : ${scores} ! Human win ! `);    
+} else if (computeurScore > humanScore) {
+        console.log(`final Score : ${scores} ! Computer win ! `);   
+} else {
+        console.log(`final Score : ${scores} ! Egality ! `);
+}
 
 }
 playGame()
